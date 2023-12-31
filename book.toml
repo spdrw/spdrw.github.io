@@ -1,7 +1,7 @@
 [book]
 authors = ["spdrw"]
 language = "zh"
-multilingual = false
+multilingual = true
 src = "src"
 
 [output.html.playground]
