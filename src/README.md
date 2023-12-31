@@ -17,6 +17,20 @@
  - 设置写保护，防止数据篡改。
  - 解除写保护，写入自定义配置，进行超频。
 
+售卖价格：
+
+| 型号 | 价格 |
+| :----:| :----: |
+| DDR4-UDIMM-RW | 299CNY |
+| DDR4-SODIMM-RW | 249CNY |
+| DDR5-UDIMM-RW | 199 |
+| DDR5-SODIMM-RW | 179 |
+
+
+联系：
+ - QQ: 1032529794
+ - WX: hu1032529794
+
 产品展示：
 
 ![DDR4-SODIMM-RW](/img/ddr4-sodimm.png)
