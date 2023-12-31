@@ -1,0 +1,5 @@
+[book]
+authors = ["spdrw"]
+language = "zh"
+multilingual = false
+src = "src"
