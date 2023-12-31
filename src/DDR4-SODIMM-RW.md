@@ -6,4 +6,4 @@
 
 连接示意图：
 
-![](/img/lj.png)
+![](/img/ddr4solj.png)
