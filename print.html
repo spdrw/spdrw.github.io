@@ -3,8 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found</title>
-        <base href="/">
+        <title></title>
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
@@ -174,8 +174,37 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="spdrw"><a class="header" href="#spdrw">SPDRW</a></h1>
+<p>根据开源项目 https://github.com/1a2m3/SPD-Reader-Writer 做的配套硬件；利用Arduino对I2C总线进行读写。</p>
+<p>内存支持：</p>
+<ul>
+<li>DDR4-UDIMM</li>
+<li>DDR4-SODIMM </li>
+<li>DDR5-UDIMM</li>
+<li>DDR5-SODIMM</li>
+</ul>
+<p>功能支持：</p>
+<ul>
+<li>SPD读取并支持保存为bin文件。</li>
+<li>SPD写入，支持写入bin、spd、thp文件。</li>
+<li>设置写保护，防止数据篡改。</li>
+<li>解除写保护，先写入自定义配置，进行超频。</li>
+</ul>
+<p>产品展示：</p>
+<p><img src="/img/ddr4-sodimm.png" alt="DDR4-SODIMM-RW" />
+<img src="/img/ddr5-sodimm.png" alt="DDR5-SODIMM-RW" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ddr4-udimm-rw"><a class="header" href="#ddr4-udimm-rw">DDR4-UDIMM-RW</a></h1>
+<p>待完善</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ddr4-sodimm-rw"><a class="header" href="#ddr4-sodimm-rw">DDR4-SODIMM-RW</a></h1>
+<p>适用于笔记本DDR4内存</p>
+<p><img src="/img/ddr4-sodimm.png" alt="DDR4-SODIMM-RW" /></p>
+<p>连接示意图：</p>
+<p><img src="/img/lj.png" alt="" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ddr5-udimm-rw"><a class="header" href="#ddr5-udimm-rw">DDR5-UDIMM-RW</a></h1>
+<p>待完善</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ddr5-sodimm-rw"><a class="header" href="#ddr5-sodimm-rw">DDR5-SODIMM-RW</a></h1>
+<p>适用于笔记本DDR5内存</p>
+<p><img src="/img/ddr5-sodimm.png" alt="DDR5-SODIMM-RW" /></p>
 
                     </main>
 
@@ -212,6 +241,11 @@
 
         <!-- Custom JS scripts -->
 
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
 
     </div>
     </body>

@@ -1,299 +1,240 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link rel="preload" as="font" href="https://adidoks.netlify.com/fonts/vendor/jost/jost-v4-latin-regular.woff2" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="https://adidoks.netlify.com/fonts/vendor/jost/jost-v4-latin-700.woff2"  type="font/woff2" crossorigin>
+<!DOCTYPE HTML>
+<html lang="zh" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>介绍</title>
 
 
-<link rel="stylesheet" href="https://adidoks.netlify.com/main.css">
-
-
-
-  
-  
-    
-  
-
-
-  
-    
-  
-  
-  
-    
-  
-  
-  
-  
-  
-
-
-  <meta name="robots" content="index, follow">
-  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-
-
-	
-
-
-	
-
-<title>AdiDoks | Modern Documentation Theme</title>
-<meta name="description" content="AdiDoks is a Zola theme helping you build modern documentation websites, which is a port of the Hugo theme Doks for Zola.">
-<link rel="canonical" href="https://adidoks.netlify.com/">
-
-
-  <meta name="twitter:card" content="summary_large_image">
-  
-    <meta name="twitter:image" content="https://adidoks.netlify.com/doks.png">
-  
-  <meta name="twitter:title" content="AdiDoks">
-  <meta name="twitter:description" content="AdiDoks is a Zola theme helping you build modern documentation websites, which is a port of the Hugo theme Doks for Zola.">
-  <meta name="twitter:site" content="@aaranxu">
-  <meta name="twitter:creator" content="@aaranxu">
-  
-  <meta property="og:title" content="AdiDoks">
-  <meta property="og:description" content="AdiDoks is a Zola theme helping you build modern documentation websites, which is a port of the Hugo theme Doks for Zola.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://adidoks.netlify.com/">
-
-  
-    <meta property="og:image" content="https://adidoks.netlify.com/doks.png">
-  
-
-  <meta property="og:updated_time" content="2021-05-01T08:08:08+08:00">
-  <meta property="og:site_name" content="AdiDoks">
-
-  
-
-  
-
-  
-  <meta property="article:publisher" content="https://www.facebook.com/ichunyun">
-  <meta property="article:author" content="https://www.facebook.com/ichunyun">
-  <meta property="og:locale" content="en_US">
-
-
-
-  
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "url": "/",
-      "name": "AdiDoks",
-      "logo": "/logo-doks.png",
-      "sameAs": [
-        "https://twitter.com/aaranxu",
+        <!-- Custom HTML head -->
         
-        "https://github.com/aaranxu"
-      ]
-    }
-    </script>
-  
-  
-  
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
+        <!-- Custom theme stylesheets -->
 
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
-<script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "BreadcrumbList",
-    
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Home",
-      "item": "https://adidoks.netlify.com/"
-    },
-    
-  }
-</script>
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
 
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
 
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
 
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">介绍</a></li><li class="chapter-item expanded "><a href="DDR4-UDIMM-RW.html"><strong aria-hidden="true">1.</strong> DDR4-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR4-SODIMM-RW.html"><strong aria-hidden="true">2.</strong> DDR4-SODIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-UDIMM-RW.html"><strong aria-hidden="true">3.</strong> DDR5-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-SODIMM-RW.html"><strong aria-hidden="true">4.</strong> DDR5-SODIMM-RW</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
 
-  <meta name="theme-color" content="#fff">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://adidoks.netlify.com/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://adidoks.netlify.com/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="https://adidoks.netlify.com/favicon-16x16.png">
-  
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
+        <div id="page-wrapper" class="page-wrapper">
 
-  
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-</head>
+                    <h1 class="menu-title"></h1>
 
-<body class="home">
-  
-    
-<div class="header-bar fixed-top"></div>
-<header class="navbar fixed-top navbar-expand-md navbar-light">
-	<div class="container">
-		<input class="menu-btn order-0" type="checkbox" id="menu-btn">
-		<label class="menu-icon d-md-none" for="menu-btn"><span class="navicon"></span></label>
-		<a class="navbar-brand order-1 order-md-0 me-auto" href="https://adidoks.netlify.com">AdiDoks</a>
-		<button id="mode" class="btn btn-link order-2 order-md-4" type="button" aria-label="Toggle mode">
-			<span class="toggle-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
-			<span class="toggle-light"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
-		</button>
-		<ul class="navbar-nav fork-me order-3 order-md-5">
-			
-				
-					<li class="nav-item">
-						<a class="nav-link" href="https://twitter.com/aaranxu"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg><span class="ms-2 visually-hidden">Twitter</span></a>
-					</li>
-				
-					<li class="nav-item">
-						<a class="nav-link" href="https://github.com/aaranxu/adidoks"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg><span class="ms-2 visually-hidden">GitHub</span></a>
-					</li>
-				
-			
-		</ul>
-		<div class="collapse navbar-collapse order-4 order-md-1">
-			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
-				
-					
-				
-				
-				
-					
-						<li class="nav-item">
-							<a class="nav-link" href="https://adidoks.netlify.com/docs/getting-started/introduction/">Docs</a>
-						</li>
-					
-						<li class="nav-item">
-							<a class="nav-link" href="https://adidoks.netlify.com/blog/">Blog</a>
-						</li>
-					
-				
-			</ul>
-			<div class="break order-6 d-md-none"></div>
-			
-				<form class="navbar-form flex-grow-1 order-7 order-md-3">
-					<input id="userinput" class="form-control is-search" type="search" placeholder="Search docs..."
-						aria-label="Search docs..." autocomplete="off">
-					<div id="suggestions" class="shadow bg-white rounded"></div>
-				</form>
-			
-		</div>
-	</div>
-</header>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
 
-  
+                    </div>
+                </div>
 
-  
-<div class="wrap container" role="document">
-  <div class="content">
-    <section class="section container-fluid mt-n3 pb-3">
-      <div class="row justify-content-center">
-        <div class="col-lg-12 text-center">
-          <h1 class="mt-0">Modern Documentation Theme</h1>
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="spdrw"><a class="header" href="#spdrw">SPDRW</a></h1>
+<p>根据开源项目 https://github.com/1a2m3/SPD-Reader-Writer 做的配套硬件；利用Arduino对I2C总线进行读写。</p>
+<p>内存支持：</p>
+<ul>
+<li>DDR4-UDIMM</li>
+<li>DDR4-SODIMM </li>
+<li>DDR5-UDIMM</li>
+<li>DDR5-SODIMM</li>
+</ul>
+<p>功能支持：</p>
+<ul>
+<li>SPD读取并支持保存为bin文件。</li>
+<li>SPD写入，支持写入bin、spd、thp文件。</li>
+<li>设置写保护，防止数据篡改。</li>
+<li>解除写保护，先写入自定义配置，进行超频。</li>
+</ul>
+<p>产品展示：</p>
+<p><img src="/img/ddr4-sodimm.png" alt="DDR4-SODIMM-RW" />
+<img src="/img/ddr5-sodimm.png" alt="DDR5-SODIMM-RW" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="DDR4-UDIMM-RW.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="DDR4-UDIMM-RW.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
         </div>
-        <div class="col-lg-9 col-xl-8 text-center">
-          <p class="lead"><b>AdiDoks</b> is a modern documentation theme, which is a port of the Hugo theme <a href="https://github.com/h-enk/">Doks</a> for Zola.</p>
-          <a class="btn btn-primary btn-lg px-4 mb-2" href="https://adidoks.netlify.com/docs/getting-started/introduction" role="button">Get started</a>
-          <p class="meta">Open-source MIT License. <a href="https://github.com/aaranxu/adidoks">GitHub v0.1.0</a></p>
-        </div>
-      </div>
-    </section>
-  </div>
-</div>
 
-<section class="section section-sm">
-  <div class="container">
-    <div class="row justify-content-center text-center">
-      
-        
-        <div class="col-lg-5">
-          <h2 class="h4">Security aware</h2>
-          <p>Get A+ scores on <a href="https://observatory.mozilla.org/analyze/adidoks.org">Mozilla Observatory</a> out of the box. Easily change the default Security Headers to suit your needs.</p>
-        </div>
-        
-        <div class="col-lg-5">
-          <h2 class="h4">Fast by default ⚡️</h2>
-          <p>Get 100 scores on <a href="https://googlechrome.github.io/lighthouse/viewer/?gist=7731347bb8ce999eff7428a8e763b637">Google Lighthouse</a> by default. Doks removes unused css, prefetches links, and lazy loads images.</p>
-        </div>
-        
-        <div class="col-lg-5">
-          <h2 class="h4">SEO-ready</h2>
-          <p>Use sensible defaults for structured data, open graph, and Twitter cards. Or easily change the SEO settings to your liking.</p>
-        </div>
-        
-        <div class="col-lg-5">
-          <h2 class="h4">Full text search</h2>
-          <p>Search your Doks site with FlexSearch. Easily customize index settings and search options to your liking.</p>
-        </div>
-        
-        <div class="col-lg-5">
-          <h2 class="h4">Page layouts</h2>
-          <p>Build pages with a landing page, blog, or documentation layout. Add custom sections and components to suit your needs.</p>
-        </div>
-        
-        <div class="col-lg-5">
-          <h2 class="h4">Dark mode</h2>
-          <p>Switch to a low-light UI with the click of a button. Change colors with variables to match your branding.</p>
-        </div>
-        
-      
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
     </div>
-  </div>
-</section>
-
-<section class="section section-sm container-fluid">
-  <div class="row justify-content-center text-center">
-    <div class="col-lg-9"></div>
-  </div>
-</section>
-
-
-  
-    
-<footer class="footer text-muted">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 order-last order-lg-first">
-				<ul class="list-inline">
-					
-						<li class="list-inline-item">Powered by <a href="https://www.netlify.com/">Netlify</a>, <a href="https://www.getzola.org/">Zola</a>, and <a href="https://github.com/aaranxu/adidoks">AdiDoks</a></li>
-					
-				</ul>
-			</div>
-			<div class="col-lg-8 order-first order-lg-last text-lg-end">
-				<ul class="list-inline">
-					
-						
-							<li class="list-inline-item"><a href="https://adidoks.netlify.com/privacy-policy/">Privacy</a></li>
-						
-							<li class="list-inline-item"><a href="https://adidoks.netlify.com/docs/contributing/code-of-conduct/">Code of Conduct</a></li>
-						
-					
-				</ul>
-			</div>
-		</div>
-	</div>
-</footer>
-
-  
-
-  
-<script type="text/javascript" src="https://adidoks.netlify.com/js/main.js" defer></script>
-
-  <script type="text/javascript" src="https://adidoks.netlify.com/plugins/elasticlunr.min.js" defer></script>
-  <script type="text/javascript" src="https://adidoks.netlify.com/search_index.en.js" defer></script>
-  <script type="text/javascript" src="https://adidoks.netlify.com/js/search.js" defer></script>
-
-  
-</body>
+    </body>
 </html>
