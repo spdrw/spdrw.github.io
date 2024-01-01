@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>读取SPD并保存</title>
+        <title>软件功能指南</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">介绍</a></li><li class="chapter-item expanded "><a href="DDR4-UDIMM-RW.html"><strong aria-hidden="true">1.</strong> DDR4-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR4-SODIMM-RW.html"><strong aria-hidden="true">2.</strong> DDR4-SODIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-UDIMM-RW.html"><strong aria-hidden="true">3.</strong> DDR5-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-SODIMM-RW.html"><strong aria-hidden="true">4.</strong> DDR5-SODIMM-RW</a></li><li class="chapter-item expanded affix "><li class="part-title">使用指南</li><li class="chapter-item expanded "><a href="app.html"><strong aria-hidden="true">5.</strong> 软件功能指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="arduinofw.html"><strong aria-hidden="true">5.1.</strong> Arduino烧录固件</a></li><li class="chapter-item expanded "><a href="arduinolj.html"><strong aria-hidden="true">5.2.</strong> PC连接Arduino</a></li><li class="chapter-item expanded "><a href="spdr.html" class="active"><strong aria-hidden="true">5.3.</strong> 读取SPD并保存</a></li><li class="chapter-item expanded "><a href="spdw.html"><strong aria-hidden="true">5.4.</strong> 写入SPD</a></li><li class="chapter-item expanded "><a href="rswp.html"><strong aria-hidden="true">5.5.</strong> 写保护功能</a></li></ol></li><li class="chapter-item expanded "><a href="edit.html"><strong aria-hidden="true">6.</strong> 编辑SPD数据指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DDR4XMPEditor.html"><strong aria-hidden="true">6.1.</strong> DDR4XMPEditor</a></li><li class="chapter-item expanded "><a href="DDR5XMPEditor.html"><strong aria-hidden="true">6.2.</strong> DDR5XMPEditor</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">介绍</a></li><li class="chapter-item expanded "><a href="DDR4-UDIMM-RW.html"><strong aria-hidden="true">1.</strong> DDR4-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR4-SODIMM-RW.html"><strong aria-hidden="true">2.</strong> DDR4-SODIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-UDIMM-RW.html"><strong aria-hidden="true">3.</strong> DDR5-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-SODIMM-RW.html"><strong aria-hidden="true">4.</strong> DDR5-SODIMM-RW</a></li><li class="chapter-item expanded affix "><li class="part-title">使用指南</li><li class="chapter-item expanded "><a href="app.html" class="active"><strong aria-hidden="true">5.</strong> 软件功能指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="arduinofw.html"><strong aria-hidden="true">5.1.</strong> Arduino烧录固件</a></li><li class="chapter-item expanded "><a href="arduinolj.html"><strong aria-hidden="true">5.2.</strong> PC连接Arduino</a></li><li class="chapter-item expanded "><a href="spdr.html"><strong aria-hidden="true">5.3.</strong> 读取SPD并保存</a></li><li class="chapter-item expanded "><a href="spdw.html"><strong aria-hidden="true">5.4.</strong> 写入SPD</a></li><li class="chapter-item expanded "><a href="rswp.html"><strong aria-hidden="true">5.5.</strong> 写保护功能</a></li></ol></li><li class="chapter-item expanded "><a href="edit.html"><strong aria-hidden="true">6.</strong> 编辑SPD数据指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DDR4XMPEditor.html"><strong aria-hidden="true">6.1.</strong> DDR4XMPEditor</a></li><li class="chapter-item expanded "><a href="DDR5XMPEditor.html"><strong aria-hidden="true">6.2.</strong> DDR5XMPEditor</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -173,17 +173,26 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="读取spd并保存"><a class="header" href="#读取spd并保存">读取SPD并保存</a></h1>
+                        <h1 id="用到的所有软件"><a class="header" href="#用到的所有软件">用到的所有软件：</a></h1>
+<ul>
+<li>Arduino ide 用来烧录固件。</li>
+<li>SPDRW 读写SPD数据。</li>
+<li>DDR4XMPEditor 编辑DDR4内存条的bin文件。</li>
+<li>DDR5XMPEditor 编辑DDR5内存条的bin文件。</li>
+<li>thphn174 俗称台风，非必须，可以用来查看数据。</li>
+</ul>
+<p>注意： 软件存放位置最好设置防火墙排除，不同系统不同设置。</p>
+<p>下载：<a href="https://drive.kamibook.com/raw/SPDRW.zip">https://drive.kamibook.com/raw/SPDRW.zip</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="arduinolj.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="DDR5-SODIMM-RW.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="spdw.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="arduinofw.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -193,11 +202,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="arduinolj.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="DDR5-SODIMM-RW.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="spdw.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="arduinofw.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

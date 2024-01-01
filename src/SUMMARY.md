@@ -8,7 +8,7 @@
 
 # 使用指南
 
--[软件功能指南](app.md)
+- [软件功能指南](app.md)
 
   - [Arduino烧录固件](arduinofw.md)
   - [PC连接Arduino](arduinolj.md)

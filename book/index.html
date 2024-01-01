@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">介绍</a></li><li class="chapter-item expanded "><a href="DDR4-UDIMM-RW.html"><strong aria-hidden="true">1.</strong> DDR4-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR4-SODIMM-RW.html"><strong aria-hidden="true">2.</strong> DDR4-SODIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-UDIMM-RW.html"><strong aria-hidden="true">3.</strong> DDR5-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-SODIMM-RW.html"><strong aria-hidden="true">4.</strong> DDR5-SODIMM-RW</a></li><li class="chapter-item expanded affix "><li class="part-title">使用指南</li><li class="chapter-item expanded "><a href="arduinofw.html"><strong aria-hidden="true">5.</strong> Arduino烧录固件</a></li><li class="chapter-item expanded "><a href="arduinolj.html"><strong aria-hidden="true">6.</strong> PC连接Arduino</a></li><li class="chapter-item expanded "><a href="spdr.html"><strong aria-hidden="true">7.</strong> 读取SPD并保存</a></li><li class="chapter-item expanded "><a href="spdw.html"><strong aria-hidden="true">8.</strong> 写入SPD</a></li><li class="chapter-item expanded "><a href="rswp.html"><strong aria-hidden="true">9.</strong> 写保护功能</a></li><li class="chapter-item expanded "><a href="edit.html"><strong aria-hidden="true">10.</strong> 编辑SPD数据指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DDR4XMPEditor.html"><strong aria-hidden="true">10.1.</strong> DDR4XMPEditor</a></li><li class="chapter-item expanded "><a href="DDR5XMPEditor.html"><strong aria-hidden="true">10.2.</strong> DDR5XMPEditor</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html" class="active">介绍</a></li><li class="chapter-item expanded "><a href="DDR4-UDIMM-RW.html"><strong aria-hidden="true">1.</strong> DDR4-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR4-SODIMM-RW.html"><strong aria-hidden="true">2.</strong> DDR4-SODIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-UDIMM-RW.html"><strong aria-hidden="true">3.</strong> DDR5-UDIMM-RW</a></li><li class="chapter-item expanded "><a href="DDR5-SODIMM-RW.html"><strong aria-hidden="true">4.</strong> DDR5-SODIMM-RW</a></li><li class="chapter-item expanded affix "><li class="part-title">使用指南</li><li class="chapter-item expanded "><a href="app.html"><strong aria-hidden="true">5.</strong> 软件功能指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="arduinofw.html"><strong aria-hidden="true">5.1.</strong> Arduino烧录固件</a></li><li class="chapter-item expanded "><a href="arduinolj.html"><strong aria-hidden="true">5.2.</strong> PC连接Arduino</a></li><li class="chapter-item expanded "><a href="spdr.html"><strong aria-hidden="true">5.3.</strong> 读取SPD并保存</a></li><li class="chapter-item expanded "><a href="spdw.html"><strong aria-hidden="true">5.4.</strong> 写入SPD</a></li><li class="chapter-item expanded "><a href="rswp.html"><strong aria-hidden="true">5.5.</strong> 写保护功能</a></li></ol></li><li class="chapter-item expanded "><a href="edit.html"><strong aria-hidden="true">6.</strong> 编辑SPD数据指南</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="DDR4XMPEditor.html"><strong aria-hidden="true">6.1.</strong> DDR4XMPEditor</a></li><li class="chapter-item expanded "><a href="DDR5XMPEditor.html"><strong aria-hidden="true">6.2.</strong> DDR5XMPEditor</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -175,36 +175,42 @@
                     <main>
                         <h1 id="spdrw"><a class="header" href="#spdrw">SPDRW</a></h1>
 <p>根据开源项目 https://github.com/1a2m3/SPD-Reader-Writer 做的配套硬件；利用Arduino对I2C总线进行读写。</p>
-<p>内存支持：</p>
+<h2 id="内存支持"><a class="header" href="#内存支持">内存支持：</a></h2>
 <ul>
 <li>DDR4-UDIMM</li>
 <li>DDR4-SODIMM </li>
 <li>DDR5-UDIMM</li>
 <li>DDR5-SODIMM</li>
 </ul>
-<p>功能支持：</p>
+<h2 id="功能支持"><a class="header" href="#功能支持">功能支持：</a></h2>
 <ul>
 <li>SPD读取并支持保存为bin文件。</li>
 <li>SPD写入，支持写入bin、spd、thp文件。</li>
 <li>设置写保护，防止数据篡改。</li>
 <li>解除写保护，写入自定义配置，进行超频。</li>
 </ul>
-<p>售卖价格：</p>
-<p>此价格为扩展板，不包含Arduino，可上tb购买，大概20CNY左右；每件送10根杜邦线母对公。</p>
-<p>由于是DIY产品，预定满一定数量一起发货。</p>
+<h2 id="售卖价格"><a class="header" href="#售卖价格">售卖价格：</a></h2>
+<p>此价格为扩展板，不包含Arduino，可自行上tb购买，大概20CNY左右；也可我方购买，免费烧录固件，联系时请说明；每件送10根杜邦线母对公。</p>
+<p>由于是DIY产品，预定满一定数量一起发货，统一顺丰包邮，发货前可申请全额退款，已发出的买家支付运费。</p>
 <div class="table-wrapper"><table><thead><tr><th style="text-align: center">型号</th><th style="text-align: center">价格</th><th style="text-align: center">货源状态</th><th style="text-align: center">发货时间</th></tr></thead><tbody>
-<tr><td style="text-align: center">DDR4-UDIMM-RW</td><td style="text-align: center">299CNY</td><td style="text-align: center">未发售</td><td style="text-align: center">未发售</td></tr>
-<tr><td style="text-align: center">DDR4-SODIMM-RW</td><td style="text-align: center">249CNY</td><td style="text-align: center">预定</td><td style="text-align: center">一周内</td></tr>
-<tr><td style="text-align: center">DDR5-UDIMM-RW</td><td style="text-align: center">199</td><td style="text-align: center">未发售</td><td style="text-align: center">未发售</td></tr>
-<tr><td style="text-align: center">DDR5-SODIMM-RW</td><td style="text-align: center">179</td><td style="text-align: center">预定</td><td style="text-align: center">一周内</td></tr>
+<tr><td style="text-align: center">DDR4-UDIMM-RW</td><td style="text-align: center">199CNY</td><td style="text-align: center">未发售</td><td style="text-align: center">未发售</td></tr>
+<tr><td style="text-align: center">DDR4-SODIMM-RW</td><td style="text-align: center">149CNY</td><td style="text-align: center">预定</td><td style="text-align: center">满10一周内发货</td></tr>
+<tr><td style="text-align: center">DDR5-UDIMM-RW</td><td style="text-align: center">149CNY</td><td style="text-align: center">未发售</td><td style="text-align: center">未发售</td></tr>
+<tr><td style="text-align: center">DDR5-SODIMM-RW</td><td style="text-align: center">149CNY</td><td style="text-align: center">预定</td><td style="text-align: center">满10一周内发货</td></tr>
 </tbody></table>
 </div>
-<p>联系：</p>
+<h2 id="售后政策"><a class="header" href="#售后政策">售后政策:</a></h2>
+<ul>
+<li>七天无理由退货，来回路费由买家支付。</li>
+<li>质保一年，外观无损坏的情况下提供维修，运费卖家支付；外观损坏的有偿维修，运费买家支付。</li>
+<li>质保期后有偿维修，运费买家支付。</li>
+</ul>
+<h2 id="联系"><a class="header" href="#联系">联系：</a></h2>
 <ul>
 <li>QQ: 1032529794</li>
 <li>WX: hu1032529794</li>
 </ul>
-<p>产品展示：</p>
+<h2 id="产品展示"><a class="header" href="#产品展示">产品展示：</a></h2>
 <p><img src="/img/ddr4-sodimm.png" alt="DDR4-SODIMM-RW" />
 <img src="/img/ddr5-sodimm.png" alt="DDR5-SODIMM-RW" /></p>
 
