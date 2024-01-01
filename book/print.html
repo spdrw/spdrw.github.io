@@ -237,8 +237,36 @@
 <p>注意： 软件存放位置最好设置防火墙排除，不同系统不同设置。</p>
 <p>下载：<a href="https://drive.kamibook.com/raw/SPDRW.zip">https://drive.kamibook.com/raw/SPDRW.zip</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="arduino烧录固件"><a class="header" href="#arduino烧录固件">Arduino烧录固件</a></h1>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="pc连接arduino"><a class="header" href="#pc连接arduino">PC连接Arduino</a></h1>
+<h2 id="提取固件"><a class="header" href="#提取固件">提取固件</a></h2>
+<p>打开SPDRW文件夹 双击 <code>spdrwgui</code> </p>
+<p><img src="/img/spdrwgui-1.png" alt="spdrwgui-1" /></p>
+<p>依次点击如下图：</p>
+<p><img src="/img/spdrwgui-2.png" alt="spdrwgui-1" />
+<img src="/img/spdrwgui-3.png" alt="spdrwgui-1" />
+<img src="/img/spdrwgui-4.png" alt="spdrwgui-1" /></p>
+<h2 id="烧录固件"><a class="header" href="#烧录固件">烧录固件</a></h2>
+<p>PC与Arduino连接，并打开Arduino IDE，如下图添加Arduino。</p>
+<p><img src="/img/arduino-1.png" alt="spdrwgui-1" /></p>
+<p>打开固件，选择刚才提取的固件ino文件</p>
+<p><img src="/img/arduino-2.png" alt="spdrwgui-1" />
+<img src="/img/arduino-3.png" alt="spdrwgui-1" />
+<img src="/img/arduino-4.png" alt="spdrwgui-1" /></p>
+<p>确认文件无误后点击“右指向箭头图标”上传。</p>
+<p><img src="/img/arduino-5.png" alt="spdrwgui-1" /></p>
+<p>上传成功如下图：</p>
+<p><img src="/img/arduino-6.png" alt="spdrwgui-1" /></p>
+<p>至此固件上传完毕</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="spdrw连接arduino"><a class="header" href="#spdrw连接arduino">SPDRW连接Arduino</a></h1>
+<p>打开SPDRW文件夹 双击 <code>spdrwgui</code> </p>
+<p><img src="/img/spdrwgui-1.png" alt="spdrwgui-1" /></p>
+<p>点击<code>connect</code> 软件会自动扫描已连接的硬件，选择对应的 <code>COM</code> 然后点击<code>connect</code></p>
+<p><img src="/img/spdrwguilj-1.png" alt="spdrwgui-1" />
+<img src="/img/spdrwguilj-2.png" alt="spdrwgui-1" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="读取spd并保存"><a class="header" href="#读取spd并保存">读取SPD并保存</a></h1>
+<p>点击菜单<code>Read</code>读取SPD。</p>
+<p><img src="/img/spdrwguir-1.png" alt="spdrwgui-1" /></p>
+<p>随后点击菜单<code>Save</code>即可保存为bin文件。</p>
+<p><img src="/img/spdrwguir-2.png" alt="spdrwgui-1" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="写入spd"><a class="header" href="#写入spd">写入SPD</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="写保护功能"><a class="header" href="#写保护功能">写保护功能</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="编辑spd数据指南"><a class="header" href="#编辑spd数据指南">编辑SPD数据指南</a></h1>
