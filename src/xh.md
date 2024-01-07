@@ -7,3 +7,10 @@
 | 品牌 | 型号 | bin文件 | 上传时间 |
 | :----:| :----: | :----: | :----: |
 | 铭瑄 | MSD416G26Q3 | <https://drive.kamibook.com/raw/MaxsunMSD416G26Q3.zip> | 2024.1.7 |
+
+
+## DDR5-SODIMM
+
+| 品牌 | 型号 | bin文件 | 上传时间 |
+| :----:| :----: | :----: | :----: |
+| 金士顿 | KF548S38-32 | <https://drive.kamibook.com/raw/KingstonKF548S38-32.zip> | 2024.1.7 |
