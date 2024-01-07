@@ -23,3 +23,7 @@
 
   - [DDR4XMPEditor](DDR4XMPEditor.md)
   - [DDR5XMPEditor](DDR5XMPEditor.md)
+
+# 星火计划
+
+- [计划简要](xh.md)
