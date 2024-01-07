@@ -44,3 +44,4 @@
 
 ![DDR4-SODIMM-RW](/img/ddr4-sodimm.png)
 ![DDR5-SODIMM-RW](/img/ddr5-sodimm.png)
+![DDR5-SODIMM-RW](/img/ddr5-sodimm-rw.png)
