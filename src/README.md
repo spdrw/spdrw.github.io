@@ -27,16 +27,16 @@
 
 | 型号 | 价格 | 货源状态 | 发货时间 |
 | :----:| :----: | :----: | :----: |
-| DDR4-UDIMM-RW | 399CNY | 未发售 | 未发售 |
-| DDR4-SODIMM-RW | 399CNY | 预定 | 满10 十天内发货 |
-| DDR5-UDIMM-RW | 349CNY | 预定 | 满24 十天内发货 |
-| DDR5-SODIMM-RW | 349CNY | 现货 | T+1 |
+| DDR4-UDIMM-RW | 249CNY | 未发售 | 未发售 |
+| DDR4-SODIMM-RW | 249CNY | 预定 | 满10 十天内发货 |
+| DDR5-UDIMM-RW | 199CNY | 预定 | 满24 十天内发货 |
+| DDR5-SODIMM-RW | 199CNY | 现货 | T+1 |
 
 ## 包裹清单
 
 | 物品 | 数量 |
 | :----:| :----: |
-| Arduino UNO R3 | 1 |
+| Arduino Nano | 1 |
 | 扩展板 | 1 |
 | 杜邦线 | 10 |
 
