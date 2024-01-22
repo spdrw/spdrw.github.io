@@ -15,6 +15,6 @@
  - DDR5XMPEditor 编辑DDR5内存条的bin文件。
  - thphn174 俗称台风，非必须，可以用来查看数据。
 
-注意： 软件存放位置最好设置防火墙排除，不同系统不同设置。
+注意： 软件存放位置最好设置防火墙排除，不同系统不同设置，下面链接可能不是最新版，可上上面链接下载。
 
  下载：[https://drive.kamibook.com/raw/SPDRW.zip](https://drive.kamibook.com/raw/SPDRW.zip)
