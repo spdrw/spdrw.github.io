@@ -27,7 +27,7 @@
 
 | 型号 | 价格 | 货源状态 | 发货时间 |
 | :----:| :----: | :----: | :----: |
-| DDR4-UDIMM-RW | 249CNY | 预定 | 满10 十天内发货 |
+| DDR4-UDIMM-RW | 249CNY | 现货 | T+1 |
 | DDR4-SODIMM-RW | 249CNY | 预定 | 满10 十天内发货 |
 | DDR5-UDIMM-RW | 199CNY | 现货 | T+1 |
 | DDR5-SODIMM-RW | 199CNY | 现货 | T+1 |
