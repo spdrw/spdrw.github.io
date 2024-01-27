@@ -9,6 +9,4 @@ weight: 1
 
 # Arduino烧录固件
 
-<video width="320" height="240" controls>
-    <source src="movie.mp4" type="video/fr.mp4">
-</video>
+<video src="/video/fr.mp4" width="800px" height="600px" controls="controls"></video>
