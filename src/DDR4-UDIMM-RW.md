@@ -1,3 +1,0 @@
-# DDR4-UDIMM-RW
-
-待完善
