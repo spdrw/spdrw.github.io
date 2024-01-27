@@ -2,6 +2,8 @@
 title: Arduino烧录固件
 date: 2024-1-27 00:00:00+0000
 slug: fr
+categories:
+    - firmware
 tags:
     - firmware
 weight: 1
