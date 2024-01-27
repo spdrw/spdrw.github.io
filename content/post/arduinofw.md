@@ -25,7 +25,7 @@ weight: 1
 
 ## 烧录固件
 
-PC与Arduino连接，并打开Arduino IDE，如下图添加Arduino。
+PC与Arduino连接，打开任务管理器，查看端口，然后等待5分钟左右会自动安装驱动，出现CH340类似字样说明安装成功，打开Arduino IDE，打开后注意IDE下方显示框所显示的环境安装，等待它安装完成，大概5分钟左右，然后如下图添加Arduino。
 
 ![spdrwgui-1](/img/arduino-1.png)
 
