@@ -1,5 +1,6 @@
 ---
-title: 工具用到的所有软件
+title: 软件
+description: 工具用到的软件。
 date: 2023-1-27 00:00:00+0000
 slug: app
 categories:

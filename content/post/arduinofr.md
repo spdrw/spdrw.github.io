@@ -1,5 +1,6 @@
 ---
 title: Arduino烧录固件
+description: 包含提取固件，写入固件，IDE安装环境及Arduino USB驱动。
 date: 2024-1-27 00:00:00+0000
 slug: fr
 categories:
