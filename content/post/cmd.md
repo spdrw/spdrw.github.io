@@ -70,11 +70,11 @@ Found EEPROM at address: 80
 解除端口`COM3`下的所有地址
 
 ```
-spdrwcli.exe /disablewriteprotection COM3
+./spdrwcli.exe /disablewriteprotection COM3
 ```
 
 解除端口`COM3`下的指定地址
 
 ```
-spdrwcli.exe /disablewriteprotection COM3 80
+./spdrwcli.exe /disablewriteprotection COM3 80
 ```
