@@ -48,8 +48,7 @@ params:
 
     sidebar:
         emoji: 🍥
-        subtitle: QQ:1032529794
-        subtitle: wx:hu1032529794
+        subtitle: QQ:1032529794 wx:hu1032529794
         avatar:
             enabled: true
             local: true
