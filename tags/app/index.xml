@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>App on SPD-RW</title><link>https://www.spdrw.cn/tags/app/</link><description>Recent content in App on SPD-RW</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>SPD-RW</copyright><atom:link href="https://www.spdrw.cn/tags/app/index.xml" rel="self" type="application/rss+xml"/><item><title>软件</title><link>https://www.spdrw.cn/p/app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.spdrw.cn/p/app/</guid><description>&lt;h1 id="用到的所有软件">用到的所有软件：&lt;/h1>
+&lt;p>最新软件:&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/1a2m3/SPD-Reader-Writer/releases" target="_blank" rel="noopener"
+>https://github.com/1a2m3/SPD-Reader-Writer/releases&lt;/a>&lt;/p>
+&lt;p>最新固件:&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/1a2m3/SPD-Reader-Writer/tree/master/firmware" target="_blank" rel="noopener"
+>https://github.com/1a2m3/SPD-Reader-Writer/tree/master/firmware&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>Arduino ide 用来烧录固件。&lt;/li>
+&lt;li>SPDRW 读写SPD数据。&lt;/li>
+&lt;li>DDR4XMPEditor 编辑DDR4内存条的bin文件。&lt;/li>
+&lt;li>DDR5XMPEditor 编辑DDR5内存条的bin文件。&lt;/li>
+&lt;li>thphn174 俗称台风，非必须，可以用来查看数据。&lt;/li>
+&lt;/ul>
+&lt;p>注意： 软件存放位置最好设置防火墙排除，不同系统不同设置，下面链接可能不是最新版，可上上面链接下载。&lt;/p>
+&lt;p>下载：&lt;a class="link" href="https://drive.kamibook.com/raw/SPDRW.zip" target="_blank" rel="noopener"
+>https://drive.kamibook.com/raw/SPDRW.zip&lt;/a>&lt;/p></description></item></channel></rss>

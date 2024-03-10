@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SPD-RW</title><link>https://www.spdrw.cn/</link><description>Recent content on SPD-RW</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>SPD-RW</copyright><atom:link href="https://www.spdrw.cn/index.xml" rel="self" type="application/rss+xml"/><item><title>Arduino烧录固件</title><link>https://www.spdrw.cn/p/fr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.spdrw.cn/p/fr/</guid><description>&lt;h1 id="arduino烧录固件">Arduino烧录固件&lt;/h1>
+&lt;h2 id="提取固件">提取固件&lt;/h2>
+&lt;p>打开SPDRW文件夹 双击 &lt;code>spdrwgui&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/spdrwgui-1.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>依次点击如下图：&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/spdrwgui-2.png"
+loading="lazy"
+alt="spdrwgui-1"
+>
+&lt;img src="https://www.spdrw.cn/post/img/spdrwgui-3.png"
+loading="lazy"
+alt="spdrwgui-1"
+>
+&lt;img src="https://www.spdrw.cn/post/img/spdrwgui-4.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;h2 id="烧录固件">烧录固件&lt;/h2>
+&lt;p>PC与Arduino连接，打开任务管理器，查看端口，然后等待5分钟左右会自动安装驱动，出现CH340类似字样说明安装成功，打开Arduino IDE，打开后注意IDE下方显示框所显示的环境安装，等待它安装完成，大概5分钟左右，然后如下图添加Arduino。&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/arduino-1.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>打开固件，选择刚才提取的固件ino文件&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/arduino-2.png"
+loading="lazy"
+alt="spdrwgui-1"
+>
+&lt;img src="https://www.spdrw.cn/post/img/arduino-3.png"
+loading="lazy"
+alt="spdrwgui-1"
+>
+&lt;img src="https://www.spdrw.cn/post/img/arduino-4.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>确认文件无误后点击“右指向箭头图标”上传。&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/arduino-5.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>上传成功如下图：&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/arduino-6.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>至此固件上传完毕&lt;/p></description></item><item><title>命令行使用SPD读写工具</title><link>https://www.spdrw.cn/p/cmd/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.spdrw.cn/p/cmd/</guid><description>&lt;h1 id="通过命令行使用读写工具">通过命令行使用读写工具&lt;/h1>
+&lt;h2 id="开启终端窗口方法">开启终端窗口方法&lt;/h2>
+&lt;ul>
+&lt;li>&lt;code>win&lt;/code>+&lt;code>R&lt;/code>键输入&lt;code>cmd&lt;/code>回车即可打开终端窗口，&lt;code>cd D:&lt;/code>进入&lt;code>D&lt;/code>盘，&lt;code>cd test&lt;/code>进入&lt;code>test&lt;/code>文件夹。&lt;/li>
+&lt;li>&lt;code>windows11&lt;/code>可在程序目录右键&lt;code>在终端中打开&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;h2 id="查看端口">查看端口&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">./spdrwcli.exe /find
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>返回如下，&lt;code>COM3&lt;/code>就是需要用到的端口。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Found Device on Serial Port: COM3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="查看地址">查看地址&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">./spdrwcli.exe /scan COM3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>返回如下，&lt;code>80&lt;/code>就是需要用到的地址。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Found EEPROM at address: 80
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="读取spd">读取SPD&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">./spdrwcli.exe /read COM3 80
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="读取spd并保存为bin文件">读取SPD并保存为&lt;code>bin&lt;/code>文件&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">./spdrwcli.exe /read COM3 80 C:\temp\spdoutput.bin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="写入spd">写入SPD&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">./spdrwcli.exe /write COM3 80 C:\temp\newspd.bin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="启用写保护">启用写保护&lt;/h2>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">./spdrwcli.exe /enablewriteprotection COM3 80
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="解除写保护">解除写保护&lt;/h2>
+&lt;p>解除端口&lt;code>COM3&lt;/code>下的所有地址&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">./spdrwcli.exe /disablewriteprotection COM3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>解除端口&lt;code>COM3&lt;/code>下的指定地址&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">./spdrwcli.exe /disablewriteprotection COM3 80
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>软件</title><link>https://www.spdrw.cn/p/app/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.spdrw.cn/p/app/</guid><description>&lt;h1 id="用到的所有软件">用到的所有软件：&lt;/h1>
+&lt;p>最新软件:&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/1a2m3/SPD-Reader-Writer/releases" target="_blank" rel="noopener"
+>https://github.com/1a2m3/SPD-Reader-Writer/releases&lt;/a>&lt;/p>
+&lt;p>最新固件:&lt;/p>
+&lt;p>&lt;a class="link" href="https://github.com/1a2m3/SPD-Reader-Writer/tree/master/firmware" target="_blank" rel="noopener"
+>https://github.com/1a2m3/SPD-Reader-Writer/tree/master/firmware&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>Arduino ide 用来烧录固件。&lt;/li>
+&lt;li>SPDRW 读写SPD数据。&lt;/li>
+&lt;li>DDR4XMPEditor 编辑DDR4内存条的bin文件。&lt;/li>
+&lt;li>DDR5XMPEditor 编辑DDR5内存条的bin文件。&lt;/li>
+&lt;li>thphn174 俗称台风，非必须，可以用来查看数据。&lt;/li>
+&lt;/ul>
+&lt;p>注意： 软件存放位置最好设置防火墙排除，不同系统不同设置，下面链接可能不是最新版，可上上面链接下载。&lt;/p>
+&lt;p>下载：&lt;a class="link" href="https://drive.kamibook.com/raw/SPDRW.zip" target="_blank" rel="noopener"
+>https://drive.kamibook.com/raw/SPDRW.zip&lt;/a>&lt;/p></description></item><item><title>链接</title><link>https://www.spdrw.cn/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.spdrw.cn/links/</guid><description>&lt;p>To use this feature, add &lt;code>links&lt;/code> section to frontmatter.&lt;/p>
+&lt;p>This page&amp;rsquo;s frontmatter:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">links&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub is the world&amp;#39;s largest software development platform.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://www.typescriptlang.org&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ts-logo-128.jpg&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>image&lt;/code> field accepts both local and external images.&lt;/p></description></item><item><title>搜索</title><link>https://www.spdrw.cn/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.spdrw.cn/search/</guid><description/></item></channel></rss>

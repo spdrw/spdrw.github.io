@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Firmware on SPD-RW</title><link>https://www.spdrw.cn/categories/firmware/</link><description>Recent content in Firmware on SPD-RW</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>SPD-RW</copyright><atom:link href="https://www.spdrw.cn/categories/firmware/index.xml" rel="self" type="application/rss+xml"/><item><title>Arduino烧录固件</title><link>https://www.spdrw.cn/p/fr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.spdrw.cn/p/fr/</guid><description>&lt;h1 id="arduino烧录固件">Arduino烧录固件&lt;/h1>
+&lt;h2 id="提取固件">提取固件&lt;/h2>
+&lt;p>打开SPDRW文件夹 双击 &lt;code>spdrwgui&lt;/code>&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/spdrwgui-1.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>依次点击如下图：&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/spdrwgui-2.png"
+loading="lazy"
+alt="spdrwgui-1"
+>
+&lt;img src="https://www.spdrw.cn/post/img/spdrwgui-3.png"
+loading="lazy"
+alt="spdrwgui-1"
+>
+&lt;img src="https://www.spdrw.cn/post/img/spdrwgui-4.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;h2 id="烧录固件">烧录固件&lt;/h2>
+&lt;p>PC与Arduino连接，打开任务管理器，查看端口，然后等待5分钟左右会自动安装驱动，出现CH340类似字样说明安装成功，打开Arduino IDE，打开后注意IDE下方显示框所显示的环境安装，等待它安装完成，大概5分钟左右，然后如下图添加Arduino。&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/arduino-1.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>打开固件，选择刚才提取的固件ino文件&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/arduino-2.png"
+loading="lazy"
+alt="spdrwgui-1"
+>
+&lt;img src="https://www.spdrw.cn/post/img/arduino-3.png"
+loading="lazy"
+alt="spdrwgui-1"
+>
+&lt;img src="https://www.spdrw.cn/post/img/arduino-4.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>确认文件无误后点击“右指向箭头图标”上传。&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/arduino-5.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>上传成功如下图：&lt;/p>
+&lt;p>&lt;img src="https://www.spdrw.cn/post/img/arduino-6.png"
+loading="lazy"
+alt="spdrwgui-1"
+>&lt;/p>
+&lt;p>至此固件上传完毕&lt;/p></description></item></channel></rss>
