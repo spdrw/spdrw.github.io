@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPD读写工具</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+    #app {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      grid-template-columns: 40% 60%;
+      grid-template-areas:
+        "controls header"
+        "controls content";
+    }
+    .header {
+      grid-area: header;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .control-panel {
+      grid-area: controls;
+      background-color: #f8f8f8;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      overflow-y: auto;
+    }
+    .content {
+      grid-area: content;
+      display: grid;
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr;
+      height: calc(100vh - 60px);
+    }
+    .message-box {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+    }
+    .received-data {
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      flex-grow: 1;
+      white-space: pre-wrap;
+      word-break: break-all;
+      font-family: monospace;
+    }
+    .sent-data {
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #e8f5e9;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+    h1, h2, h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+    button {
+      padding: 10px 15px;
+      background-color: #42b983;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    textarea, input, select {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: monospace;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    textarea {
+      flex-grow: 1;
+      resize: none;
+      margin-bottom: 10px;
+    }
+    .status {
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    .error {
+      color: red;
+      margin-top: 5px;
+      font-size: 12px;
+    }
+    .toast {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #f56c6c;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 6px;
+      font-size: 15px;
+      z-index: 9999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      animation: fadeInOut 2.5s;
+      pointer-events: none;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      flex: 1;
+      min-width: 0;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .compact-row .form-group {
+      margin-bottom: 0;
+    }
+    .clear-btn {
+      background-color: #f56c6c;
+      margin-left: 10px;
+    }
+    .data-section {
+      margin-top: 20px;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+    }
+    .compact-select {
+      padding: 6px;
+      font-size: 13px;
+    }
+    .port-dialog-mask {
+      position: fixed; left:0; top:0; right:0; bottom:0;
+      background: rgba(0,0,0,0.3);
+      z-index: 10000;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .port-dialog {
+      background: #fff; border-radius: 8px; padding: 24px 32px; min-width: 320px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    .port-dialog ul { list-style: none; padding: 0; margin: 0; }
+    .port-dialog li {
+      padding: 8px 12px; margin: 4px 0; border-radius: 4px; cursor: pointer;
+      border: 1px solid #eee;
+    }
+    .port-dialog li.selected {
+      background: #42b983; color: #fff; border-color: #42b983;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div v-if="toastMsg" class="toast">{{ toastMsg }}</div>
+    <div v-if="showPortDialog" class="port-dialog-mask">
+      <div class="port-dialog">
+        <h3>{{ t('selectPort') }}</h3>
+        <ul>
+          <li v-for="(p, idx) in availablePorts" :key="idx"
+              :class="{selected: selectedPortIndex === idx}"
+              @click="connectToPort(p)">
+            {{ getPortDisplayName(p, idx) }}
+          </li>
+        </ul>
+        <div style="margin-top:16px; text-align:right;">
+          <button @click="showPortDialog = false">{{ t('cancel') }}</button>
+        </div>
+      </div>
+    </div>
+    <div class="control-panel">
+      <div class="status">
+        {{ t('status') }}: {{ portOpen ? t('connected') : t('disconnected') }}
+        <span v-if="error" class="error">{{ error }}</span>
+      </div>
+      <div class="form-row">
+        <button @click="openPort" :disabled="portOpen">{{ t('connect') }}</button>
+        <button @click="closePort" :disabled="!portOpen">{{ t('disconnect') }}</button>
+        <button @click="lang = lang === 'zh' ? 'en' : 'zh'">{{ lang === 'zh' ? 'English' : '中文' }}</button>
+      </div>
+      <div class="data-section">
+        <div class="form-row compact-row">
+          <div class="form-group">
+            <label for="spdaddr">{{ t('spdaddr') }}</label>
+            <select id="spdaddr" v-model="formData.spdaddr" :disabled="!portOpen" class="compact-select">
+              <option v-for="n in 8" :value="50 + n - 1">{{ 50 + n - 1 }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="type">{{ t('type') }}</label>
+            <select id="type" v-model="formData.type" :disabled="!portOpen" class="compact-select">
+              <option value="ddr5">DDR5</option>
+              <option value="ddr4">DDR4</option>
+              <option value="ddr3">DDR3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cmd">{{ t('cmd') }}</label>
+            <select id="cmd" v-model="formData.cmd" :disabled="!portOpen" class="compact-select">
+              <option value="read">{{ t('read') || '读取' }}</option>
+              <option value="write">{{ t('write') || '写入' }}</option>
+              <option value="srswp">{{ t('srswp') || '设置写保护(DDR4/5可用)' }}</option>
+              <option value="crswp">{{ t('crswp') || '清除写保护(DDR3/4可用)' }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="addr">{{ t('addr') }}</label>
+            <input id="addr" type="text" v-model="formData.addr" :disabled="!portOpen" placeholder="00">
+          </div>
+          <div class="form-group" v-if="formData.cmd === 'read'">
+            <label for="number">{{ t('number') }}</label>
+            <input id="number" type="text" v-model="formData.number" :disabled="!portOpen" placeholder="3">
+          </div>
+        </div>
+        <div class="form-group" v-if="formData.cmd === 'write' || formData.cmd === 'srswp'">
+          <label for="value">{{ t('value') }}</label>
+          <input id="value" type="text" v-model="formData.value" :disabled="!portOpen" placeholder="">
+        </div>
+        <div class="form-row">
+          <button @click="sendMessage" :disabled="!portOpen">{{ t('send') }}</button>
+          <button class="clear-btn" @click="clearReceivedData">{{ t('clear') }}</button>
+        </div>
+        <div class="sent-data" v-if="lastSentData">
+          <strong>{{ t('lastSend') }}:</strong><br>
+          {{ lastSentData }}
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="message-box">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3>{{ t('received') }}</h3>
+          <span style="font-size: 12px; color: #666;">{{ currentTime }}</span>
+        </div>
+        <div class="received-data">
+          <pre>{{ receivedData }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const { createApp, ref, onMounted, onBeforeUnmount, watch, nextTick } = Vue;
+    createApp({
+      setup() {
+        // 串口相关状态
+        const portOpen = ref(false);
+        const receivedData = ref('');
+        const lastSentData = ref('');
+        const error = ref(null);
+        const toastMsg = ref('');
+        let port = null;
+        let reader = null;
+        let readableStreamClosed = null;
+
+        // 弹窗相关状态
+        const showPortDialog = ref(false);
+        const availablePorts = ref([]); // 存储已授权串口
+        const selectedPortIndex = ref(null);
+
+        // 表单数据
+        const formData = ref({
+          spdaddr: "50",
+          type: "ddr5",
+          cmd: "read",
+          addr: "0",
+          value: "00",
+          number: "3"
+        });
+
+        // 当前时间
+        const currentTime = ref(new Date().toLocaleString());
+        let timer = null;
+
+        // 清空接收区
+        const clearReceivedData = () => {
+          receivedData.value = '';
+        };
+
+        // toast 弹窗
+        function showToast(msg) {
+          toastMsg.value = msg;
+          setTimeout(() => { toastMsg.value = ''; }, 2200);
+        }
+
+        // 连接已选串口
+        const connectToPort = async (selectedPort) => {
+          try {
+            port = selectedPort;
+            await port.open({
+              baudRate: 115200,
+              dataBits: 8,
+              stopBits: 1,
+              parity: 'none'
+            });
+            portOpen.value = true;
+            receivedData.value = t('serialConnectedWait') + '\n';
+            error.value = null;
+            showToast(t('toastConnected'));
+            showPortDialog.value = false;
+            readData();
+          } catch (err) {
+            error.value = `${t('openError')}: ${err.message}`; 
+            showToast(error.value);
+          }
+        };
+
+        // 打开串口
+        const openPort = async () => {
+          try {
+            if (!('serial' in navigator)) {
+              showToast(t('toastNotSupport'));
+              throw new Error('您的浏览器不支持Web Serial API');
+            }
+            // 优化：先获取已授权串口
+            const ports = await navigator.serial.getPorts();
+            if (ports.length === 0) {
+              // 没有已授权串口，弹出授权窗口
+              port = await navigator.serial.requestPort();
+              await connectToPort(port);
+            } else {
+              // 有已授权串口，弹出自定义弹窗
+              availablePorts.value = ports;
+              selectedPortIndex.value = null;
+              showPortDialog.value = true;
+            }
+          } catch (err) {
+            error.value = `${t('openError')}: ${err.message}`;
+            showToast(error.value);
+          }
+        };
+
+        // 关闭串口
+        const closePort = async () => {
+          try {
+            // 1. 先取消读取器
+            if (reader) {
+              try {
+                await reader.cancel();
+              } catch (cancelError) {
+                console.warn('取消读取器时出错:', cancelError);
+              }
+              // 只有在reader仍然有效时才释放锁
+              if (reader && typeof reader.releaseLock === 'function') {
+                reader.releaseLock();
+              }
+              reader = null;
+            }
+            // 2. 关闭流
+            if (readableStreamClosed) {
+              try {
+                await readableStreamClosed.catch(() => {});
+              } catch (streamError) {
+                console.warn('关闭流时出错:', streamError);
+              }
+              readableStreamClosed = null;
+            }
+            // 3. 最后关闭端口
+            if (port) {
+              try {
+                await port.close();
+              } catch (closeError) {
+                error.value = `${t('closeError')}: ${closeError.message}`;
+                showToast(error.value);
+                throw closeError;
+              } finally {
+                port = null;
+              }
+            }
+            portOpen.value = false;
+            receivedData.value += t('serialDisconnected') + '\n';
+            error.value = null;
+            showToast(t('toastDisconnected'));
+          } catch (err) {
+            error.value = `${t('closeError')}: ${err.message}`;
+            showToast(error.value);
+            // 即使出错也确保状态重置
+            portOpen.value = false;
+            port = null;
+            reader = null;
+            readableStreamClosed = null;
+          }
+        };
+
+        // 读取串口数据
+        const readData = async () => {
+          try {
+            const decoder = new TextDecoderStream();
+            readableStreamClosed = port.readable.pipeTo(decoder.writable);
+            reader = decoder.readable.getReader();
+            while (portOpen.value) {
+              try {
+                const { value, done } = await reader.read();
+                if (done) {
+                  break;
+                }
+                receivedData.value += value;
+                await nextTick();
+                const container = document.querySelector('.received-data');
+                if (container) container.scrollTop = container.scrollHeight;
+              } catch (readError) {
+                if (readError.name !== 'InterruptedError') {
+                  error.value = `${t('readError')}: ${readError.message}`;
+                  showToast(error.value);
+                  throw readError;
+                }
+                break;
+              }
+            }
+          } catch (err) {
+            error.value = `${t('readError')}: ${err.message}`;
+            showToast(error.value);
+            closePort();
+          }
+        };
+
+        // 发送消息（带表单校验）
+        const sendMessage = async () => {
+          if (!port || !portOpen.value) return;
+          // 校验：地址、数量、值（如需）必须为16进制且非空
+          if (!formData.value.addr || !/^[0-9a-fA-F]+$/.test(formData.value.addr)) {
+            showToast(t('addrHexRequired'));
+            return;
+          }
+          if (formData.value.cmd === 'read') {
+            if (!formData.value.number || !/^[0-9]+$/.test(formData.value.number)) {
+              showToast(t('numberDecRequired'));
+              return;
+            }
+          }
+          if ((formData.value.cmd === 'write' || formData.value.cmd === 'srswp')) {
+            if (!formData.value.value || !/^[0-9a-fA-F]+$/.test(formData.value.value)) {
+              showToast(t('valueHexRequired'));
+              return;
+            }
+          }
+          let writer = null;
+          try {
+            receivedData.value = '';
+            const encoder = new TextEncoder();
+            writer = port.writable.getWriter();
+            const dataToSend = {
+              spdaddr: formData.value.spdaddr,
+              type: formData.value.type,
+              cmd: formData.value.cmd,
+              addr: formData.value.addr,
+              value: formData.value.value,
+              number: formData.value.number
+            };
+            const jsonString = JSON.stringify(dataToSend, null, 2);
+            lastSentData.value = jsonString;
+            await writer.write(encoder.encode(jsonString + '\n'));
+          } catch (err) {
+            error.value = `${t('sendError')}: ${err.message}`;
+            showToast(error.value);
+            closePort();
+          } finally {
+            if (writer && typeof writer.releaseLock === 'function') writer.releaseLock();
+          }
+        };
+
+        // 获取串口显示名称
+        function getPortDisplayName(p, idx) {
+          if (p.getInfo) {
+            const info = p.getInfo();
+            if (info.usbVendorId && info.usbProductId) {
+              return `VID:${info.usbVendorId.toString(16).toUpperCase()} PID:${info.usbProductId.toString(16).toUpperCase()}`;
+            }
+          }
+          // 没有USB信息时可显示“未知设备”或空字符串
+          return t('unknownDevice');
+        }
+
+        // 定时更新时间
+        onMounted(() => {
+          timer = setInterval(() => {
+            currentTime.value = new Date().toLocaleString();
+          }, 1000);
+        });
+
+        // 组件卸载时关闭串口和定时器
+        onBeforeUnmount(() => {
+          if (timer) clearInterval(timer);
+          if (portOpen.value) closePort();
+        });
+
+        // 语言切换与国际化
+        const lang = ref('zh');
+        const i18n = {
+          zh: {
+            status: '状态',
+            connected: '已连接',
+            disconnected: '未连接',
+            connect: '连接串口',
+            disconnect: '断开连接',
+            spdaddr: 'SPD地址',
+            type: '类型',
+            cmd: '命令',
+            addr: '地址',
+            number: '数量',
+            value: '值',
+            send: '发送',
+            clear: '清空接收区',
+            lastSend: '最近发送',
+            received: '接收数据',
+            selectPort: '请选择已授权串口',
+            cancel: '取消',
+            toastNotSupport: '您的浏览器不支持Web Serial API，仅支持新版Chrome/Edge',
+            toastConnected: '串口已连接',
+            toastDisconnected: '串口已断开',
+            read: '读取',
+            write: '写入',
+            srswp: '设置写保护(DDR4/5可用)',
+            crswp: '清除写保护(DDR3/4可用)',
+            serialConnectedWait: '串口已连接，等待数据...\n',
+            serialDisconnected: '串口已断开\n',
+            addrHexRequired: '地址必须为16进制且不能为空',
+            numberHexRequired: '数量必须为10进制且不能为空',
+            valueHexRequired: '值必须为16进制且不能为空',
+            unknownDevice: '未知设备'
+          },
+          en: {
+            status: 'Status',
+            connected: 'Connected',
+            disconnected: 'Disconnected',
+            connect: 'Connect Serial',
+            disconnect: 'Disconnect',
+            spdaddr: 'SPD Address',
+            type: 'Type',
+            cmd: 'Command',
+            addr: 'Address',
+            number: 'Number',
+            value: 'Value',
+            send: 'Send',
+            clear: 'Clear',
+            lastSend: 'Last Sent',
+            received: 'Received Data',
+            selectPort: 'Select Authorized Serial Port',
+            cancel: 'Cancel',
+            toastNotSupport: 'Your browser does not support Web Serial API. Please use latest Chrome/Edge.',
+            toastConnected: 'Serial port connected',
+            toastDisconnected: 'Serial port disconnected',
+            read: 'Read',
+            write: 'Write',
+            srswp: 'Set Write Protect (DDR4/5 only)',
+            crswp: 'Clear Write Protect (DDR3/4 only)',
+            serialConnectedWait: 'Serial port connected, waiting for data...\n',
+            serialDisconnected: 'Serial port disconnected\n',
+            addrHexRequired: 'Address must be non-empty and hexadecimal',
+            numberHexRequired: 'Number must be non-empty and hexadecimal',
+            valueHexRequired: 'Value must be non-empty and hexadecimal',
+            unknownDevice: 'Unknown Device'
+          }
+        };
+        function t(key) {
+          return i18n[lang.value][key] || key;
+        }
+
+        // i18n字典补充错误类型
+        i18n.zh.openError = '打开错误';
+        i18n.en.openError = 'Open Error';
+        i18n.zh.closeError = '关闭错误';
+        i18n.en.closeError = 'Close Error';
+        i18n.zh.sendError = '发送错误';
+        i18n.en.sendError = 'Send Error';
+        i18n.zh.readError = '读取错误';
+        i18n.en.readError = 'Read Error';
+        // i18n字典补充数量为10进制
+        i18n.zh.numberDecRequired = '数量必须为10进制数字且不能为空';
+        i18n.en.numberDecRequired = 'Number must be non-empty and decimal';
+
+        return {
+          portOpen,
+          receivedData,
+          lastSentData,
+          error,
+          formData,
+          openPort,
+          closePort,
+          sendMessage,
+          clearReceivedData,
+          currentTime,
+          toastMsg,
+          showPortDialog,
+          availablePorts,
+          selectedPortIndex,
+          connectToPort,
+          getPortDisplayName,
+          lang,
+          t
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
