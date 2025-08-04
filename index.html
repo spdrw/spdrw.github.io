@@ -239,8 +239,7 @@
             <select id="cmd" v-model="formData.cmd" :disabled="!portOpen" class="compact-select">
               <option value="read">{{ t('read') || '读取' }}</option>
               <option value="write">{{ t('write') || '写入' }}</option>
-              <option value="srswp">{{ t('srswp') || '设置写保护(DDR4/5可用)' }}</option>
-              <option value="crswp">{{ t('crswp') || '清除写保护(DDR3/4可用)' }}</option>
+              <option value="srswp">{{ t('srswp') || '设置写保护' }}</option>
             </select>
           </div>
         </div>
@@ -551,8 +550,7 @@
             toastDisconnected: '串口已断开',
             read: '读取',
             write: '写入',
-            srswp: '设置写保护(DDR4/5可用)',
-            crswp: '清除写保护(DDR3/4可用)',
+            srswp: '设置写保护',
             serialConnectedWait: '串口已连接，等待数据...\n',
             serialDisconnected: '串口已断开\n',
             addrHexRequired: '地址必须为16进制且不能为空',
@@ -583,8 +581,7 @@
             toastDisconnected: 'Serial port disconnected',
             read: 'Read',
             write: 'Write',
-            srswp: 'Set Write Protect (DDR4/5 only)',
-            crswp: 'Clear Write Protect (DDR3/4 only)',
+            srswp: 'Set Write Protect',
             serialConnectedWait: 'Serial port connected, waiting for data...\n',
             serialDisconnected: 'Serial port disconnected\n',
             addrHexRequired: 'Address must be non-empty and hexadecimal',
