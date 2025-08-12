@@ -307,6 +307,21 @@
           value: "",
           number: "3"
         });
+        watch(
+          () => formData.value.cmd,
+          (newCmd) => {
+          // 根据不同的 cmd 设置默认值
+            if (newCmd === 'read') {
+              formData.value.addr = '0';        // 默认地址为 0
+              formData.value.number = '3';      // 默认数量为 3
+              formData.value.value = '';        // 清空 value
+            } else if (newCmd === 'write' || newCmd === 'srswp') {
+              formData.value.addr = '0';        // 默认地址为 0
+              formData.value.value = '';        // 清空 value
+              formData.value.number = '';       // 清空数量
+            }
+           }
+        );
 
         // 当前时间
         const currentTime = ref(new Date().toLocaleString());
@@ -458,9 +473,11 @@
         const sendMessage = async () => {
           if (!port || !portOpen.value) return;
           // 校验：地址、数量、值（如需）必须为16进制且非空
-          if (!formData.value.addr || !/^[0-9a-fA-F]+$/.test(formData.value.addr)) {
-            showToast(t('addrHexRequired'));
-            return;
+          if ((formData.value.cmd === 'read' || formData.value.cmd === 'write')) {
+            if (!formData.value.addr || !/^[0-9a-fA-F]+$/.test(formData.value.addr)) {
+              showToast(t('addrHexRequired'));
+              return;
+            }
           }
           if (formData.value.cmd === 'read') {
             if (!formData.value.number || !/^[0-9]+$/.test(formData.value.number)) {
