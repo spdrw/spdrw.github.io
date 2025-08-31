@@ -56,11 +56,6 @@
     </div>
     
     <div class="min-h-screen flex flex-col">
-      <!-- 头部 -->
-      <header class="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
-        <h1 class="text-xl font-bold text-gray-800">SPD读写工具</h1>
-        <span class="text-sm text-gray-500">{{ currentTime }}</span>
-      </header>
       
       <!-- 控制面板 -->
       <div class="bg-white border-b border-gray-200 p-4">
@@ -71,7 +66,6 @@
             <span :class="{'text-green-600': portOpen, 'text-red-600': !portOpen}">
               {{ portOpen ? t('connected') : t('disconnected') }}
             </span>
-            <span v-if="error" class="ml-2 text-red-500 text-sm">{{ error }}</span>
           </div>
           
           <button @click="openPort" :disabled="portOpen" 
@@ -225,8 +219,6 @@
           }
         );
 
-        // 当前时间
-        const currentTime = ref(new Date().toLocaleString());
         let timer = null;
 
         // 压缩发送数据显示
@@ -438,13 +430,6 @@
           return t('unknownDevice');
         }
 
-        // 定时更新时间
-        onMounted(() => {
-          timer = setInterval(() => {
-            currentTime.value = new Date().toLocaleString();
-          }, 1000);
-        });
-
         // 组件卸载时关闭串口和定时器
         onBeforeUnmount(() => {
           if (timer) clearInterval(timer);
@@ -540,7 +525,6 @@
           closePort,
           sendMessage,
           clearReceivedData,
-          currentTime,
           toastMsg,
           showPortDialog,
           availablePorts,
