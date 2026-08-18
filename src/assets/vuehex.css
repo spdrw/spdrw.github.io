@@ -1,0 +1,887 @@
+.vuehex-root {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	gap: 0.75rem;
+	box-sizing: border-box;
+}
+
+.vuehex-root--expand-to-content {
+	height: auto;
+}
+
+.vuehex-root--horizontal {
+	flex-direction: row;
+	align-items: stretch;
+}
+
+.vuehex-root--vertical {
+	flex-direction: column;
+}
+
+.vuehex-viewer {
+	flex: 1 1 auto;
+	min-width: 0;
+	min-height: 0;
+	display: flex;
+	overflow: hidden;
+	position: relative;
+}
+
+.vuehex-search {
+	--vuehex-search-background: var(
+		--vuehex-ui-background,
+		var(--vuehex-background)
+	);
+	--vuehex-search-foreground: var(
+		--vuehex-ui-foreground,
+		var(--vuehex-foreground)
+	);
+	--vuehex-search-border: var(
+		--vuehex-ui-border-color,
+		var(--vuehex-border-color)
+	);
+	--vuehex-search-focus: var(
+		--vuehex-ui-focus-ring-color,
+		rgba(96, 165, 250, 0.9)
+	);
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	z-index: 5;
+	display: grid;
+	gap: 0.35rem;
+	max-width: calc(100% - 1rem);
+	padding: 0.4rem;
+	border: 1px solid var(--vuehex-search-border);
+	border-radius: 0.35rem;
+	background: var(--vuehex-search-background);
+	color: var(--vuehex-search-foreground);
+	box-shadow: var(--vuehex-ui-shadow, 0 8px 20px rgba(15, 23, 42, 0.24));
+	font-family: system-ui, sans-serif;
+	font-size: 0.78rem;
+}
+
+.vuehex-search--expanded {
+	left: 0.5rem;
+	right: 0.5rem;
+	max-width: none;
+}
+
+.vuehex-search__find,
+.vuehex-search__replace,
+.vuehex-search__mode {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.vuehex-search__input {
+	min-width: 12rem;
+	max-width: 18rem;
+	padding: 0.3rem 0.4rem;
+	border: 1px solid var(--vuehex-search-border);
+	border-radius: 0.2rem;
+	background: transparent;
+	color: inherit;
+	font-family:
+		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"DejaVu Sans Mono", "Ubuntu Mono", "Courier New", monospace;
+	font-variant-ligatures: none;
+	font-variant-numeric: tabular-nums;
+}
+
+.vuehex-search__input:focus-visible,
+.vuehex-search button:focus-visible {
+	outline: 2px solid var(--vuehex-search-focus);
+	outline-offset: 1px;
+}
+
+.vuehex-search button {
+	padding: 0.28rem 0.45rem;
+	border: 1px solid var(--vuehex-search-border);
+	border-radius: 0.2rem;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+}
+
+.vuehex-search button:disabled {
+	opacity: 0.55;
+	cursor: not-allowed;
+}
+
+.vuehex-search__icon-button {
+	min-width: 1.8rem;
+	padding-right: 0.25rem;
+	padding-left: 0.25rem;
+	font-weight: 600;
+}
+
+.vuehex-search__mode-button--active {
+	border-color: var(--vuehex-search-focus);
+	background: color-mix(in srgb, var(--vuehex-search-focus) 22%, transparent);
+	box-shadow: inset 0 0 0 1px var(--vuehex-search-focus);
+	font-weight: 700;
+}
+
+.vuehex-search--expanded .vuehex-search__input {
+	flex: 1 1 12rem;
+	max-width: none;
+}
+
+.vuehex-search__results {
+	min-width: 3.8rem;
+	text-align: center;
+	white-space: nowrap;
+	opacity: 0.82;
+}
+
+.vuehex-search__message {
+	max-width: 28rem;
+	margin: 0;
+	font-size: 0.72rem;
+}
+
+.vuehex-search__message--error {
+	color: #ef4444;
+}
+
+.vuehex-search__sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+.vuehex-search-hit {
+	background: var(--vuehex-search-hit-background, rgba(250, 204, 21, 0.35));
+	box-shadow: inset 0 -1px 0
+		var(--vuehex-search-hit-border, rgba(250, 204, 21, 0.95));
+}
+
+.vuehex-search-hit--active {
+	background: var(
+		--vuehex-search-active-hit-background,
+		rgba(96, 165, 250, 0.5)
+	);
+	box-shadow: inset 0 0 0 1px
+		var(--vuehex-search-active-hit-border, rgba(147, 197, 253, 1));
+}
+
+@media (max-width: 540px) {
+	.vuehex-search {
+		left: 0.5rem;
+		right: 0.5rem;
+	}
+
+	.vuehex-search__find,
+	.vuehex-search__replace {
+		flex-wrap: wrap;
+	}
+
+	.vuehex-search__input {
+		flex: 1 1 10rem;
+		min-width: 0;
+		max-width: none;
+	}
+}
+
+.vuehex-viewer--with-statusbar {
+	flex-direction: column;
+}
+
+.vuehex {
+	--vuehex-background: #0f172a;
+	--vuehex-foreground: #e2e8f0;
+	--vuehex-border-color: rgba(148, 163, 184, 0.25);
+	--vuehex-offset-color: #94a3b8;
+	--vuehex-offset-leading-opacity: 0.4;
+	--vuehex-row-divider: rgba(148, 163, 184, 0.2);
+	--vuehex-byte-color: #f8fafc;
+	--vuehex-ascii-color: #f1f5f9;
+	--vuehex-ascii-non-printable-color: rgba(148, 163, 184, 0.45);
+	--vuehex-ascii-column-border: rgba(148, 163, 184, 0.2);
+	--vuehex-mid-column-gutter: 1.5ch;
+	--vuehex-bytes-column-padding-right: 0.5ch;
+	--vuehex-ascii-column-padding-left: 0.5ch;
+	--vuehex-scrollbar-track: rgba(15, 23, 42, 0.3);
+	--vuehex-scrollbar-thumb: rgba(148, 163, 184, 0.4);
+	--vuehex-scrollbar-thumb-hover: rgba(148, 163, 184, 0.6);
+
+	font-family:
+		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"DejaVu Sans Mono", "Ubuntu Mono", "Courier New", monospace;
+	font-variant-ligatures: none;
+	font-variant-numeric: tabular-nums;
+	text-rendering: optimizeSpeed;
+	background: var(--vuehex-background);
+	color: var(--vuehex-foreground);
+	padding: 0 1rem;
+	border: 1px solid var(--vuehex-border-color);
+	overflow-x: auto;
+	overflow-y: auto;
+	position: relative;
+	box-sizing: border-box;
+	user-select: none;
+
+	/* Firefox scrollbar styling */
+	scrollbar-color: var(--vuehex-scrollbar-thumb) var(--vuehex-scrollbar-track);
+	scrollbar-width: thin;
+}
+
+.vuehex-viewer > .vuehex {
+	flex: 1 1 auto;
+	min-height: 0;
+	height: auto;
+}
+
+.vuehex-statusbar {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.5rem 0.75rem;
+	border: 1px solid var(--vuehex-ui-border-color, var(--vuehex-border-color));
+	background: var(--vuehex-ui-background, var(--vuehex-background));
+	color: var(--vuehex-ui-foreground, var(--vuehex-foreground));
+	font-size: 0.8rem;
+}
+
+.vuehex-statusbar__section {
+	flex: 1 1 0;
+	min-width: 0;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.vuehex-statusbar__section--left {
+	justify-content: flex-start;
+}
+
+.vuehex-statusbar__section--middle {
+	justify-content: center;
+}
+
+.vuehex-statusbar__section--right {
+	justify-content: flex-end;
+}
+
+.vuehex-statusbar__item {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.4rem;
+	white-space: nowrap;
+}
+
+.vuehex-statusbar__label {
+	opacity: 0.75;
+}
+
+.vuehex-statusbar__value {
+	display: inline-block;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-weight: 600;
+}
+
+.vuehex-statusbar__item--selection {
+	margin-left: auto;
+}
+
+.vuehex-statusbar--top {
+	border-bottom: none;
+}
+
+.vuehex-viewer--statusbar-top > .vuehex {
+	border-top: none;
+}
+
+.vuehex-statusbar--bottom {
+	border-top: none;
+}
+
+.vuehex-viewer--statusbar-bottom > .vuehex {
+	border-bottom: none;
+}
+
+.vuehex-viewer--with-nav.vuehex-viewer--nav-left,
+.vuehex-viewer--with-nav.vuehex-viewer--nav-right {
+	flex: 1 1 auto;
+}
+
+.vuehex-chunk-nav {
+	flex: 0 0 auto;
+	display: flex;
+	gap: 0.5rem;
+	padding: 0.6rem;
+	border: 1px solid var(--vuehex-ui-border-color, var(--vuehex-border-color));
+	background: var(--vuehex-ui-background, var(--vuehex-background));
+	color: var(--vuehex-ui-foreground, var(--vuehex-foreground));
+	box-shadow: var(--vuehex-ui-shadow, 0 12px 24px rgba(15, 23, 42, 0.12));
+}
+
+.vuehex-chunk-nav--right,
+.vuehex-chunk-nav--left {
+	flex-direction: column;
+	align-items: stretch;
+	min-width: 220px;
+	max-width: 280px;
+}
+
+.vuehex-chunk-nav--right {
+	order: 1;
+}
+
+.vuehex-chunk-nav--left {
+	order: -1;
+}
+
+.vuehex-chunk-nav--top,
+.vuehex-chunk-nav--bottom {
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+}
+
+.vuehex-chunk-nav--top {
+	order: -1;
+}
+
+.vuehex-chunk-nav--bottom {
+	order: 1;
+}
+
+.vuehex-chunk-nav__header {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.vuehex-chunk-nav__title {
+	font-weight: 600;
+	font-size: 0.9rem;
+}
+
+.vuehex-chunk-nav__summary {
+	font-size: 0.75rem;
+	opacity: 0.75;
+}
+
+.vuehex-chunk-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	overflow-y: auto;
+	min-height: 0;
+	flex: 1 1 auto;
+}
+
+.vuehex-chunk-nav--top .vuehex-chunk-list,
+.vuehex-chunk-nav--bottom .vuehex-chunk-list {
+	flex-direction: row;
+	overflow-y: visible;
+	overflow-x: auto;
+}
+
+.vuehex-chunk-item {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.125rem;
+	padding: 0.45rem 0.65rem;
+	border: 1px solid
+		var(--vuehex-ui-button-border-color, rgba(148, 163, 184, 0.15));
+	background: var(--vuehex-ui-button-background, rgba(148, 163, 184, 0.08));
+	color: inherit;
+	cursor: pointer;
+	transition:
+		border-color 0.15s ease,
+		background-color 0.15s ease;
+}
+
+.vuehex-chunk-item:hover {
+	border-color: var(
+		--vuehex-ui-button-border-color-hover,
+		rgba(148, 163, 184, 0.4)
+	);
+	background: var(
+		--vuehex-ui-button-background-hover,
+		rgba(148, 163, 184, 0.12)
+	);
+}
+
+.vuehex-chunk-item:focus-visible {
+	outline: 2px solid var(--vuehex-ui-focus-ring-color, rgba(96, 165, 250, 0.8));
+	outline-offset: 2px;
+}
+
+.vuehex-chunk-item--active {
+	border-color: var(
+		--vuehex-ui-button-border-color-active,
+		rgba(96, 165, 250, 0.8)
+	);
+	background: var(
+		--vuehex-ui-button-background-active,
+		rgba(96, 165, 250, 0.22)
+	);
+}
+
+.vuehex-chunk-item__label {
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+.vuehex-chunk-item__range {
+	font-size: 0.75rem;
+	opacity: 0.8;
+}
+
+/* Webkit/Chromium scrollbar styling */
+.vuehex::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+.vuehex::-webkit-scrollbar-track {
+	background: var(--vuehex-scrollbar-track);
+}
+
+.vuehex::-webkit-scrollbar-thumb {
+	background: var(--vuehex-scrollbar-thumb);
+	border-radius: 6px;
+	border: 2px solid var(--vuehex-background);
+}
+
+.vuehex::-webkit-scrollbar-thumb:hover {
+	background: var(--vuehex-scrollbar-thumb-hover);
+}
+
+.vuehex::-webkit-scrollbar-corner {
+	background: var(--vuehex-scrollbar-track);
+}
+
+.vuehex.vuehex--expand-to-content {
+	height: auto;
+	overflow: visible;
+}
+
+.vuehex-table {
+	/*
+		VueHex positions/transforms the table for virtualization. If the table is
+		forced to `width: 100%`, its columns stretch to the container width, which
+		can visually "push" the ASCII column far to the right.
+
+		Force shrink-to-content so the ASCII column starts immediately after the
+		HEX bytes, and let the outer `.vuehex` scroller handle horizontal overflow.
+	*/
+	width: max-content;
+	min-width: max-content;
+	border-collapse: collapse;
+	/*
+		Allow the HEX column to grow with its contents (byte cells) so the HEX text
+		cannot visually spill into the ASCII column when font metrics differ across
+		operating systems.
+	*/
+	table-layout: auto;
+}
+
+.vuehex-inner {
+	position: relative;
+	width: 100%;
+	min-height: 100%;
+}
+
+.vuehex-table tbody tr {
+	border-bottom: 1px solid var(--vuehex-row-divider);
+}
+
+.vuehex-table tbody tr:last-child {
+	border-bottom: none;
+}
+
+.vuehex-offset {
+	padding: 0.25rem 0.75rem 0.25rem 0;
+	text-align: left;
+	font-weight: 600;
+	color: var(--vuehex-offset-color);
+	white-space: nowrap;
+	width: 150px;
+}
+
+.vuehex-offset-leading {
+	opacity: var(--vuehex-offset-leading-opacity);
+}
+
+.vuehex-bytes,
+.vuehex-ascii {
+	white-space: nowrap;
+}
+
+.vuehex-bytes {
+	padding-right: var(--vuehex-bytes-column-padding-right);
+	width: auto;
+}
+
+.vuehex-byte,
+.vuehex-ascii-char {
+	display: inline-block;
+	text-align: center;
+}
+
+.vuehex-byte {
+	min-width: 2ch;
+	margin: 0 0.25ch;
+	color: var(--vuehex-byte-color);
+}
+
+.vuehex-byte.vuehex-selected,
+.vuehex-ascii-char.vuehex-selected {
+	background: rgba(59, 130, 246, 0.3);
+	outline: 1px solid rgba(59, 130, 246, 0.65);
+	outline-offset: -1px;
+}
+
+.vuehex-byte.vuehex-cursor,
+.vuehex-ascii-char.vuehex-cursor {
+	outline: 2px solid rgba(59, 130, 246, 0.85);
+	outline-offset: -2px;
+}
+
+/* --- Editor mode ---------------------------------------------------------- */
+
+.vuehex.vuehex-editor {
+	/* No layout changes; only visual affordances. */
+}
+
+/* Subtle column focus so it's clear which side is being edited. */
+.vuehex.vuehex-editor.vuehex-editor--active-hex .vuehex-bytes {
+	background: rgba(59, 130, 246, 0.05);
+}
+
+.vuehex.vuehex-editor.vuehex-editor--active-ascii .vuehex-ascii {
+	background: rgba(59, 130, 246, 0.05);
+}
+
+/* Emphasize the cursor cell on the active column without hiding the other side. */
+.vuehex.vuehex-editor .vuehex-cursor.vuehex-cursor--active-column {
+	background: rgba(59, 130, 246, 0.22);
+}
+
+/* Mode hooks (useful for consumer overrides). */
+.vuehex.vuehex-editor.vuehex-editor--insert .vuehex-byte.vuehex-cursor,
+.vuehex.vuehex-editor.vuehex-editor--insert .vuehex-ascii-char.vuehex-cursor {
+	outline-style: dashed;
+}
+
+.vuehex-ascii-char.vuehex-selected--ascii {
+	outline-style: dashed;
+}
+
+.vuehex-ascii-char {
+	min-width: 1ch;
+	margin: 0;
+}
+
+.vuehex-byte--column-start {
+	margin-left: calc(var(--vuehex-mid-column-gutter) + 0.25ch);
+}
+
+.vuehex-ascii-char--column-start {
+	margin-left: 0;
+}
+
+.vuehex-ascii {
+	padding-left: var(--vuehex-ascii-column-padding-left);
+	border-left: 1px solid var(--vuehex-ascii-column-border);
+	color: var(--vuehex-ascii-color);
+}
+
+.vuehex-ascii-char {
+	color: var(--vuehex-ascii-color);
+}
+
+.vuehex-ascii-char--non-printable {
+	color: var(--vuehex-ascii-non-printable-color);
+}
+
+.vuehex-byte.vuehex-category-digit,
+.vuehex-ascii-char.vuehex-category-digit {
+	color: #facc15;
+}
+
+.vuehex-byte.vuehex-category-uppercase,
+.vuehex-ascii-char.vuehex-category-uppercase {
+	color: #38bdf8;
+}
+
+.vuehex-byte.vuehex-category-lowercase,
+.vuehex-ascii-char.vuehex-category-lowercase {
+	color: #c084fc;
+}
+
+.vuehex-byte.vuehex-category-null,
+.vuehex-ascii-char.vuehex-category-null {
+	opacity: 0.55;
+}
+
+.vuehex-byte.vuehex-category-erased,
+.vuehex-ascii-char.vuehex-category-erased {
+	color: #fb923c;
+}
+
+.vuehex-byte.vuehex-category-control,
+.vuehex-ascii-char.vuehex-category-control {
+	color: #2dd4bf;
+}
+
+.vuehex-byte.vuehex-category-highbit,
+.vuehex-ascii-char.vuehex-category-highbit {
+	color: #f87171;
+}
+
+.vuehex-byte.vuehex-linked-hover,
+.vuehex-ascii-char.vuehex-linked-hover {
+	background: rgba(96, 165, 250, 0.25);
+	outline: 1px solid white;
+	color: var(--vuehex-byte-color);
+	cursor: pointer;
+}
+
+.vuehex-byte--placeholder,
+.vuehex-ascii-char--placeholder {
+	visibility: hidden;
+}
+
+.vuehex-byte--ghost,
+.vuehex-ascii-char--ghost {
+	opacity: 0.45;
+	color: var(--vuehex-offset-color);
+}
+
+.vuehex.vuehex-editor .vuehex-byte--ghost.vuehex-cursor,
+.vuehex.vuehex-editor .vuehex-ascii-char--ghost.vuehex-cursor {
+	opacity: 1;
+	color: var(--vuehex-byte-color);
+	outline: 1px dashed var(--vuehex-ui-focus-ring-color);
+	outline-offset: 1px;
+}
+
+/* Dark theme */
+.vuehex-theme-dark {
+	--vuehex-background: #0f172a;
+	--vuehex-foreground: #e2e8f0;
+	--vuehex-border-color: rgba(148, 163, 184, 0.25);
+	--vuehex-offset-color: #94a3b8;
+	--vuehex-offset-leading-opacity: 0.35;
+	--vuehex-row-divider: rgba(148, 163, 184, 0.18);
+	--vuehex-byte-color: #f8fafc;
+	--vuehex-ascii-color: #f1f5f9;
+	--vuehex-ascii-non-printable-color: rgba(148, 163, 184, 0.35);
+	--vuehex-ascii-column-border: rgba(148, 163, 184, 0.24);
+	--vuehex-mid-column-gutter: 1.5ch;
+	--vuehex-bytes-column-padding-right: 0.5ch;
+	--vuehex-ascii-column-padding-left: 0.5ch;
+	--vuehex-scrollbar-track: rgba(15, 23, 42, 0.3);
+	--vuehex-scrollbar-thumb: rgba(148, 163, 184, 0.4);
+	--vuehex-scrollbar-thumb-hover: rgba(148, 163, 184, 0.6);
+	--vuehex-ui-background: var(--vuehex-background);
+	--vuehex-ui-foreground: var(--vuehex-foreground);
+	--vuehex-ui-border-color: var(--vuehex-border-color);
+	--vuehex-ui-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+	--vuehex-ui-button-border-color: rgba(148, 163, 184, 0.15);
+	--vuehex-ui-button-border-color-hover: rgba(148, 163, 184, 0.4);
+	--vuehex-ui-button-border-color-active: rgba(96, 165, 250, 0.8);
+	--vuehex-ui-button-background: rgba(148, 163, 184, 0.08);
+	--vuehex-ui-button-background-hover: rgba(148, 163, 184, 0.12);
+	--vuehex-ui-button-background-active: rgba(96, 165, 250, 0.22);
+	--vuehex-ui-focus-ring-color: rgba(96, 165, 250, 0.8);
+}
+
+/* Light theme */
+.vuehex-theme-light {
+	--vuehex-background: #f8fafc;
+	--vuehex-foreground: #0f172a;
+	--vuehex-border-color: rgba(15, 23, 42, 0.12);
+	--vuehex-offset-color: rgba(15, 23, 42, 0.65);
+	--vuehex-offset-leading-opacity: 0.5;
+	--vuehex-row-divider: rgba(15, 23, 42, 0.08);
+	--vuehex-byte-color: #1f2937;
+	--vuehex-ascii-color: #334155;
+	--vuehex-ascii-non-printable-color: rgba(100, 116, 139, 0.5);
+	--vuehex-ascii-column-border: rgba(148, 163, 184, 0.35);
+	--vuehex-mid-column-gutter: 1.5ch;
+	--vuehex-bytes-column-padding-right: 0.5ch;
+	--vuehex-ascii-column-padding-left: 0.5ch;
+	--vuehex-scrollbar-track: rgba(226, 232, 240, 0.6);
+	--vuehex-scrollbar-thumb: rgba(100, 116, 139, 0.4);
+	--vuehex-scrollbar-thumb-hover: rgba(100, 116, 139, 0.6);
+	--vuehex-ui-background: var(--vuehex-background);
+	--vuehex-ui-foreground: var(--vuehex-foreground);
+	--vuehex-ui-border-color: var(--vuehex-border-color);
+	--vuehex-ui-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+	--vuehex-ui-button-border-color: rgba(15, 23, 42, 0.12);
+	--vuehex-ui-button-border-color-hover: rgba(15, 23, 42, 0.22);
+	--vuehex-ui-button-border-color-active: rgba(37, 99, 235, 0.7);
+	--vuehex-ui-button-background: rgba(15, 23, 42, 0.03);
+	--vuehex-ui-button-background-hover: rgba(15, 23, 42, 0.06);
+	--vuehex-ui-button-background-active: rgba(37, 99, 235, 0.12);
+	--vuehex-ui-focus-ring-color: rgba(37, 99, 235, 0.7);
+}
+
+.vuehex-theme-light [class~="vuehex-ascii-char--non-printable"] {
+	color: rgba(100, 116, 139, 0.35);
+}
+
+/* OS-aware theme */
+.vuehex-theme-auto {
+	--vuehex-background: #0f172a;
+	--vuehex-foreground: #e2e8f0;
+	--vuehex-border-color: rgba(148, 163, 184, 0.25);
+	--vuehex-offset-color: #94a3b8;
+	--vuehex-offset-leading-opacity: 0.35;
+	--vuehex-row-divider: rgba(148, 163, 184, 0.18);
+	--vuehex-byte-color: #f8fafc;
+	--vuehex-ascii-color: #f1f5f9;
+	--vuehex-scrollbar-track: rgba(15, 23, 42, 0.3);
+	--vuehex-scrollbar-thumb: rgba(148, 163, 184, 0.4);
+	--vuehex-scrollbar-thumb-hover: rgba(148, 163, 184, 0.6);
+	--vuehex-ascii-non-printable-color: rgba(148, 163, 184, 0.35);
+	--vuehex-ascii-column-border: rgba(148, 163, 184, 0.24);
+	--vuehex-mid-column-gutter: 1.5ch;
+	--vuehex-bytes-column-padding-right: 0.5ch;
+	--vuehex-ascii-column-padding-left: 0.5ch;
+	--vuehex-ui-background: var(--vuehex-background);
+	--vuehex-ui-foreground: var(--vuehex-foreground);
+	--vuehex-ui-border-color: var(--vuehex-border-color);
+	--vuehex-ui-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+	--vuehex-ui-button-border-color: rgba(148, 163, 184, 0.15);
+	--vuehex-ui-button-border-color-hover: rgba(148, 163, 184, 0.4);
+	--vuehex-ui-button-border-color-active: rgba(96, 165, 250, 0.8);
+	--vuehex-ui-button-background: rgba(148, 163, 184, 0.08);
+	--vuehex-ui-button-background-hover: rgba(148, 163, 184, 0.12);
+	--vuehex-ui-button-background-active: rgba(96, 165, 250, 0.22);
+	--vuehex-ui-focus-ring-color: rgba(96, 165, 250, 0.8);
+}
+
+@media (prefers-color-scheme: light) {
+	.vuehex-theme-auto {
+		--vuehex-background: #f8fafc;
+		--vuehex-foreground: #0f172a;
+		--vuehex-border-color: rgba(15, 23, 42, 0.12);
+		--vuehex-offset-color: rgba(15, 23, 42, 0.65);
+		--vuehex-offset-leading-opacity: 0.5;
+		--vuehex-row-divider: rgba(15, 23, 42, 0.08);
+		--vuehex-byte-color: #1f2937;
+		--vuehex-ascii-color: #334155;
+		--vuehex-scrollbar-track: rgba(226, 232, 240, 0.6);
+		--vuehex-scrollbar-thumb: rgba(100, 116, 139, 0.4);
+		--vuehex-scrollbar-thumb-hover: rgba(100, 116, 139, 0.6);
+		--vuehex-ascii-non-printable-color: rgba(100, 116, 139, 0.5);
+		--vuehex-ascii-column-border: rgba(148, 163, 184, 0.35);
+		--vuehex-mid-column-gutter: 1.5ch;
+		--vuehex-bytes-column-padding-right: 0.5ch;
+		--vuehex-ascii-column-padding-left: 0.5ch;
+		--vuehex-ui-background: var(--vuehex-background);
+		--vuehex-ui-foreground: var(--vuehex-foreground);
+		--vuehex-ui-border-color: var(--vuehex-border-color);
+		--vuehex-ui-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+		--vuehex-ui-button-border-color: rgba(15, 23, 42, 0.12);
+		--vuehex-ui-button-border-color-hover: rgba(15, 23, 42, 0.22);
+		--vuehex-ui-button-border-color-active: rgba(37, 99, 235, 0.7);
+		--vuehex-ui-button-background: rgba(15, 23, 42, 0.03);
+		--vuehex-ui-button-background-hover: rgba(15, 23, 42, 0.06);
+		--vuehex-ui-button-background-active: rgba(37, 99, 235, 0.12);
+		--vuehex-ui-focus-ring-color: rgba(37, 99, 235, 0.7);
+	}
+
+	.vuehex-theme-auto [class~="vuehex-ascii-char--non-printable"] {
+		color: rgba(100, 116, 139, 0.35);
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.vuehex-theme-auto {
+		--vuehex-background: #0f172a;
+		--vuehex-foreground: #e2e8f0;
+		--vuehex-border-color: rgba(148, 163, 184, 0.25);
+		--vuehex-offset-color: #94a3b8;
+		--vuehex-offset-leading-opacity: 0.35;
+		--vuehex-row-divider: rgba(148, 163, 184, 0.18);
+		--vuehex-byte-color: #f8fafc;
+		--vuehex-ascii-color: #f1f5f9;
+		--vuehex-ascii-non-printable-color: rgba(148, 163, 184, 0.35);
+		--vuehex-ascii-column-border: rgba(148, 163, 184, 0.24);
+		--vuehex-mid-column-gutter: 1.5ch;
+	}
+}
+
+/* Terminal theme */
+.vuehex-theme-terminal {
+	--vuehex-background: #050505;
+	--vuehex-foreground: #7fff7f;
+	--vuehex-border-color: rgba(80, 255, 120, 0.25);
+	--vuehex-offset-color: rgba(143, 255, 143, 0.65);
+	--vuehex-offset-leading-opacity: 0.55;
+	--vuehex-scrollbar-track: rgba(0, 0, 0, 0.5);
+	--vuehex-scrollbar-thumb: rgba(127, 255, 127, 0.35);
+	--vuehex-scrollbar-thumb-hover: rgba(127, 255, 127, 0.55);
+	--vuehex-row-divider: rgba(80, 255, 120, 0.15);
+	--vuehex-byte-color: #7fff7f;
+	--vuehex-ascii-color: #b8ff8a;
+	--vuehex-ascii-non-printable-color: rgba(127, 255, 127, 0.35);
+	--vuehex-ascii-column-border: rgba(127, 255, 127, 0.25);
+	--vuehex-mid-column-gutter: 1.5ch;
+	--vuehex-bytes-column-padding-right: 0.5ch;
+	--vuehex-ascii-column-padding-left: 0.5ch;
+	--vuehex-ui-background: var(--vuehex-background);
+	--vuehex-ui-foreground: var(--vuehex-foreground);
+	--vuehex-ui-border-color: var(--vuehex-border-color);
+	--vuehex-ui-shadow: 0 12px 24px rgba(0, 0, 0, 0.45);
+	--vuehex-ui-button-border-color: rgba(127, 255, 127, 0.25);
+	--vuehex-ui-button-border-color-hover: rgba(127, 255, 127, 0.45);
+	--vuehex-ui-button-border-color-active: rgba(127, 255, 127, 0.75);
+	--vuehex-ui-button-background: rgba(127, 255, 127, 0.08);
+	--vuehex-ui-button-background-hover: rgba(127, 255, 127, 0.12);
+	--vuehex-ui-button-background-active: rgba(127, 255, 127, 0.18);
+	--vuehex-ui-focus-ring-color: rgba(127, 255, 127, 0.7);
+}
+
+/* Sunset theme */
+.vuehex-theme-sunset {
+	--vuehex-background: radial-gradient(circle at top, #451952, #1f1728);
+	--vuehex-foreground: #fee2e2;
+	--vuehex-border-color: rgba(248, 113, 113, 0.35);
+	--vuehex-offset-color: rgba(248, 113, 113, 0.75);
+	--vuehex-offset-leading-opacity: 0.5;
+	--vuehex-scrollbar-track: rgba(31, 23, 40, 0.5);
+	--vuehex-scrollbar-thumb: rgba(248, 113, 113, 0.45);
+	--vuehex-scrollbar-thumb-hover: rgba(248, 113, 113, 0.65);
+	--vuehex-row-divider: rgba(248, 113, 113, 0.12);
+	--vuehex-byte-color: #fca5a5;
+	--vuehex-ascii-color: #fcd34d;
+	--vuehex-ascii-non-printable-color: rgba(251, 191, 36, 0.4);
+	--vuehex-ascii-column-border: rgba(248, 113, 113, 0.25);
+	--vuehex-mid-column-gutter: 1.5ch;
+	--vuehex-bytes-column-padding-right: 0.5ch;
+	--vuehex-ascii-column-padding-left: 0.5ch;
+	--vuehex-ui-background: var(--vuehex-background);
+	--vuehex-ui-foreground: var(--vuehex-foreground);
+	--vuehex-ui-border-color: var(--vuehex-border-color);
+	--vuehex-ui-shadow: 0 14px 30px rgba(15, 23, 42, 0.22);
+	--vuehex-ui-button-border-color: rgba(248, 113, 113, 0.22);
+	--vuehex-ui-button-border-color-hover: rgba(248, 113, 113, 0.42);
+	--vuehex-ui-button-border-color-active: rgba(251, 191, 36, 0.65);
+	--vuehex-ui-button-background: rgba(248, 113, 113, 0.1);
+	--vuehex-ui-button-background-hover: rgba(248, 113, 113, 0.15);
+	--vuehex-ui-button-background-active: rgba(251, 191, 36, 0.18);
+	--vuehex-ui-focus-ring-color: rgba(251, 191, 36, 0.65);
+}
